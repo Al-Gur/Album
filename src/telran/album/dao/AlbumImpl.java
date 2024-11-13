@@ -18,7 +18,10 @@ public class AlbumImpl implements Album {
         if (photo == null || photos.length == size || getPhotoFromAlbum(photo.getPhotoId(), photo.getAlbumId()) != null) {
             return false;
         }
-        photos[size++] = photo;
+        int i = -Arrays.binarySearch(photos, photo, (photo1, photo2)-> photo1.date.compareTo(photo1.date)) -1;
+        System.arraycopy(photos, i, photos, i+1, size - i);
+        photos[i] = photo;
+        size++;
         return true;
     }
 
@@ -26,7 +29,7 @@ public class AlbumImpl implements Album {
     public boolean removePhoto(int photoId, int albumId) {
         for (int i = 0; i < size; i++) {
             if (photos[i].getAlbumId() == albumId && photos[i].getPhotoId() == photoId) {
-                photos[i] = photos[size-1];
+                System.arraycopy(photos, i+1, photos, i, size - i - 1);
                 photos[--size]=null;
                 return true;
             }
