@@ -55,12 +55,11 @@ public class AlbumImpl implements Album {
         return null;
     }
 
-    @Override
-    public Photo[] getAllPhotoFromAlbum(int albumId) {
+    private Photo[] getPhotos(Predicate<Photo> predicate) {
         Photo[] temp=new Photo[size];
         int j=0;
         for (int i = 0; i < size; i++) {
-            if (photos[i].getAlbumId() == albumId) {
+            if (predicate.test(photos[i])) {
                 temp[j++] = photos[i];
             }
         }
@@ -68,16 +67,14 @@ public class AlbumImpl implements Album {
     }
 
     @Override
+    public Photo[] getAllPhotoFromAlbum(int albumId) {
+        return getPhotos( photo -> photo.getAlbumId() == albumId);
+    }
+
+    @Override
     public Photo[] getPhotoBetweenDate(LocalDate dateFrom, LocalDate dateTo) {
-        Photo[] temp=new Photo[size];
-        int j=0;
-        for (int i = 0; i < size; i++) {
-            LocalDate date = photos[i].getDate().toLocalDate();
-            if (!date.isBefore(dateFrom) && date.isBefore(dateTo)) {
-                temp[j++] = photos[i];
-            }
-        }
-        return Arrays.copyOf(temp, j);
+        return getPhotos(photo -> !photo.getDate().toLocalDate().isBefore(dateFrom) &&
+                photo.getDate().toLocalDate().isBefore(dateTo));
     }
 
     @Override
