@@ -18,9 +18,10 @@ public class AlbumImpl implements Album {
         if (photo == null || photos.length == size || getPhotoFromAlbum(photo.getPhotoId(), photo.getAlbumId()) != null) {
             return false;
         }
-        int i = -Arrays.binarySearch(photos, photo, (photo1, photo2)-> photo1.date.compareTo(photo1.date)) -1;
-        System.arraycopy(photos, i, photos, i+1, size - i);
-        photos[i] = photo;
+        int index = Arrays.binarySearch(photos, photo, (photo1, photo2) -> photo1.date.compareTo(photo1.date));
+        index = index >= 0 ? index : -index - 1;
+        System.arraycopy(photos, index, photos, index + 1, size - index);
+        photos[index] = photo;
         size++;
         return true;
     }
@@ -29,8 +30,8 @@ public class AlbumImpl implements Album {
     public boolean removePhoto(int photoId, int albumId) {
         for (int i = 0; i < size; i++) {
             if (photos[i].getAlbumId() == albumId && photos[i].getPhotoId() == photoId) {
-                System.arraycopy(photos, i+1, photos, i, size - i - 1);
-                photos[--size]=null;
+                System.arraycopy(photos, i + 1, photos, i, size - i - 1);
+                photos[--size] = null;
                 return true;
             }
         }
@@ -59,8 +60,8 @@ public class AlbumImpl implements Album {
     }
 
     private Photo[] getPhotos(Predicate<Photo> predicate) {
-        Photo[] temp=new Photo[size];
-        int j=0;
+        Photo[] temp = new Photo[size];
+        int j = 0;
         for (int i = 0; i < size; i++) {
             if (predicate.test(photos[i])) {
                 temp[j++] = photos[i];
@@ -71,7 +72,7 @@ public class AlbumImpl implements Album {
 
     @Override
     public Photo[] getAllPhotoFromAlbum(int albumId) {
-        return getPhotos( photo -> photo.getAlbumId() == albumId);
+        return getPhotos(photo -> photo.getAlbumId() == albumId);
     }
 
     @Override

@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa573ba2-2019-47f3-9f80-c7478318730d" name="Changes" comment="Homework Lambda">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="aa573ba2-2019-47f3-9f80-c7478318730d" name="Changes" comment="Homework auto-sorted">
       <change beforePath="$PROJECT_DIR$/src/telran/album/dao/AlbumImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/telran/album/dao/AlbumImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731511635477</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Homework auto-sorted">
+      <created>1731512638534</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731512638534</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Homework Album" />
     <MESSAGE value="Homework Lambda" />
-    <option name="LAST_COMMIT_MESSAGE" value="Homework Lambda" />
+    <MESSAGE value="Homework auto-sorted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homework auto-sorted" />
   </component>
 </project>
